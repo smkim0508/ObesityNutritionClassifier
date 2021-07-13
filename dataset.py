@@ -1,12 +1,12 @@
 import os, sys
 import numpy as np
 import cv2
-'''
+
 import torch
-from torch.utils.data import Dataset, Dataloader
+#from torch.utils.data import Dataset, Dataloader
 import torchvision
 import torchvision.transforms as transforms
-'''
+
 #/Users/sungmin/Desktop/Dataset
 
 class JunkFoodSet: #(Dataset):
@@ -44,21 +44,38 @@ class JunkFoodSet: #(Dataset):
     def __getitem__(self, index):
         # 1. image read (using cv2) H x W x C, 0~255
         img = cv2.imread(self.samples[index])
-        
+        cv2.imwrite('original.png', img)
+        print(img.shape)
         if self.transform:
             img = self.transform(img) # H x W x C => C x H x W & 0 ~ 255 => 0 ~ 1 & -1 ~ 1
+        print(img.shape)
 
-        
         # 2. one-hot vector
         return img
         # C x H x W, 0~1 -> -1 ~ 1
         # data augmentation 
-if __name__ == '__main__':
-    train_set = JunkFoodSet('/Users/sungmin/Desktop/Dataset')
-    print(len(train_set))
 
+def write_image(img):
+    img = ((img*0.5)+0.5).clamp(0.0,0.1) #-1~1 -> 0~1
+    #0~1 -> 0~255
+    np_img = (img.cpu().detach()*255.).numpy().astype(np.uint8)
+    #C x H x W -> H x W x C
+    np_img = np_img.transpose(1,2,0)
+    cv2.imwrite('test.png', np_img)
+
+if __name__ == '__main__':
+    junkfood_transform = transforms.Compose(
+        [
+            transforms.ToTensor(), #0~255 -> 0~1
+            transforms.Normalize((0.5,0.5,0.5), (0.5,0.5,0.5)) #0~1 -> -1~1
+        ]
+    )
+    train_set = JunkFoodSet('/Users/sungmin/Desktop/Dataset',
+    transform = junkfood_transform)
+  
     for data in train_set:
-        print(data)
+        #print(data)
+        write_image(data)
         exit(1)
 
 
