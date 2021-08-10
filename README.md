@@ -2,7 +2,7 @@
 ========
 PyTorch training code and pretrained models for **DETR** (**DE**tection **TR**ansformer).
 
-![DETR](.github/DETR.png)
+![DETR](.github/figure/Dataset_snapshot.png)
 
 **What it is**. 
 A classification system proposed to combat the never-ending obesity issues around the world. It takes RGB images as input and outputs Nutirional data and healthier alternatives to hopefully deter people from consuming unhealthy foods too often. 
@@ -25,14 +25,6 @@ To download the test samples, click
 [here](https://drive.google.com/drive/folders/1TIGOFiS9U7x2uX34IuM_OoXFMbmAhIrf?usp=sharing).
 
 To download the train samples, click [here](https://drive.google.com/drive/folders/1KU8HUKFAW_SCy4MNnGBikeBwJLGSLxZK?usp=sharing).
-
-We expect the directory structure to be the following:
-```
-path/to/coco/
-  annotations/  # annotation json files
-  train2017/    # train images
-  val2017/      # val images
-```
 
 ---
 
