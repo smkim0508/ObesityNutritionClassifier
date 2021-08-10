@@ -1,8 +1,9 @@
 **AOS**: Anti-Obesity System to classify unhealthy food
 ========
-PyTorch training code and pretrained models for **DETR** (**DE**tection **TR**ansformer).
 
-![DETR](.github/figure/Dataset_snapshot.png)
+Dataset for AOS (Anti-Obesity System)
+
+![DETR](./figure/Dataset_snapshot.png)
 
 **What it is**. 
 A classification system proposed to combat the never-ending obesity issues around the world. It takes RGB images as input and outputs Nutirional data and healthier alternatives to hopefully deter people from consuming unhealthy foods too often. 
