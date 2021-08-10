@@ -1,6 +1,10 @@
 **AOS**: Anti-Obesity System to classify unhealthy food
 ========
 
+TODO LIST
+- [ ] 설명 실행 예시 그림 추가
+- [X] 데이터셋 링크 추가
+
 Dataset for AOS (Anti-Obesity System)
 
 ![DETR](./figure/Dataset_snapshot.png)
