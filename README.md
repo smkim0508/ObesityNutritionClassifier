@@ -1,12 +1,11 @@
-**DE⫶TR**: End-to-End Object Detection with Transformers
+**AOS**: Anti-Obesity System to classify unhealthy food
 ========
 PyTorch training code and pretrained models for **DETR** (**DE**tection **TR**ansformer).
-We replace the full complex hand-crafted object detection pipeline with a Transformer, and match Faster R-CNN with a ResNet-50, obtaining **42 AP** on COCO using half the computation power (FLOPs) and the same number of parameters. Inference in 50 lines of PyTorch.
 
 ![DETR](.github/DETR.png)
 
-**What it is**. Unlike traditional computer vision techniques, DETR approaches object detection as a direct set prediction problem. It consists of a set-based global loss, which forces unique predictions via bipartite matching, and a Transformer encoder-decoder architecture. 
-Given a fixed small set of learned object queries, DETR reasons about the relations of the objects and the global image context to directly output the final set of predictions in parallel. Due to this parallel nature, DETR is very fast and efficient.
+**What it is**. 
+A classification system proposed to combat the never-ending obesity issues around the world. It takes RGB images as input and outputs Nutirional data and healthier alternatives to hopefully deter people from consuming unhealthy foods too often. 
 
 **About the code**. We believe that object detection should not be more difficult than classification,
 and should not require complex libraries for training and inference.
@@ -225,39 +224,3 @@ Train baseline DETR-6-6 model on 4 nodes for 300 epochs:
 python run_with_submitit.py --timeout 3000 --coco_path /path/to/coco
 ```
 
-# Usage - Segmentation
-
-We show that it is relatively straightforward to extend DETR to predict segmentation masks. We mainly demonstrate strong panoptic segmentation results.
-
-## Data preparation
-
-For panoptic segmentation, you need the panoptic annotations additionally to the coco dataset (see above for the coco dataset). You need to download and extract the [annotations](http://images.cocodataset.org/annotations/panoptic_annotations_trainval2017.zip).
-We expect the directory structure to be the following:
-```
-path/to/coco_panoptic/
-  annotations/  # annotation json files
-  panoptic_train2017/    # train panoptic annotations
-  panoptic_val2017/      # val panoptic annotations
-```
-
-## Training
-
-We recommend training segmentation in two stages: first train DETR to detect all the boxes, and then train the segmentation head.
-For panoptic segmentation, DETR must learn to detect boxes for both stuff and things classes. You can train it on a single node with 8 gpus for 300 epochs with:
-```
-python -m torch.distributed.launch --nproc_per_node=8 --use_env main.py --coco_path /path/to/coco  --coco_panoptic_path /path/to/coco_panoptic --dataset_file coco_panoptic --output_dir /output/path/box_model
-```
-For instance segmentation, you can simply train a normal box model (or used a pre-trained one we provide).
-
-Once you have a box model checkpoint, you need to freeze it, and train the segmentation head in isolation.
-For panoptic segmentation you can train on a single node with 8 gpus for 25 epochs:
-```
-python -m torch.distributed.launch --nproc_per_node=8 --use_env main.py --masks --epochs 25 --lr_drop 15 --coco_path /path/to/coco  --coco_panoptic_path /path/to/coco_panoptic  --dataset_file coco_panoptic --frozen_weights /output/path/box_model/checkpoint.pth --output_dir /output/path/segm_model
-```
-For instance segmentation only, simply remove the `dataset_file` and `coco_panoptic_path` arguments from the above command line.
-
-# License
-DETR is released under the Apache 2.0 license. Please see the [LICENSE](LICENSE) file for more information.
-
-# Contributing
-We actively welcome your pull requests! Please see [CONTRIBUTING.md](.github/CONTRIBUTING.md) and [CODE_OF_CONDUCT.md](.github/CODE_OF_CONDUCT.md) for more info.
