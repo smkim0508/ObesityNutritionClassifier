@@ -5,8 +5,8 @@ Dataset for AOS (Anti-Obesity System)
 
 ![AOS](./figure/Dataset_snapshot.png)
 
-**What it is**. 
-A classification system proposed to combat the never-ending obesity issues around the world. It takes RGB images as input and outputs Nutirional data and healthier alternatives to hopefully deter people from consuming unhealthy foods too often. 
+**What is AOS?** 
+AOS is a classification system proposed to combat the never-ending obesity issues around the world. It takes RGB images as input and outputs Nutirional data and healthier alternatives to hopefully deter people from consuming unhealthy foods too often. 
 
 # Dataset Download
 To download the test samples, click
