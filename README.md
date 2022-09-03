@@ -45,7 +45,7 @@ AOS-RC denotes the AOS model with the new Random Conjunction augmentation method
       <td>AOS-RC</td>
       <td>59.30</td>
       <td><a href="https://drive.google.com/file/d/1rnS9imooplITyoSv3KKY-czPnZXnivP1/view?usp=sharing">model</a></a></td>
-      <td>??Mb</td>
+      <td>85.4Mb</td>
     </tr>
   </tbody>
 </table>
