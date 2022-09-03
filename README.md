@@ -41,17 +41,10 @@ AOS-RC denotes the AOS model with the new Random Conjunction augmentation method
   </thead>
   <tbody>
     <tr>
-      <th>0</th>
-      <td>AOS</td>
-      <td>59.07</td>
-      <td><a href="https://dl.fbaipublicfiles.com/detr/detr-r50-e632da11.pth">model</a></a></td>
-      <td>??Mb</td>
-    </tr>
-    <tr>
       <th>1</th>
       <td>AOS-RC</td>
       <td>59.30</td>
-      <td><a href="https://dl.fbaipublicfiles.com/detr/detr-r50-dc5-f0fb7ef5.pth">model</a></a></td>
+      <td><a href="https://drive.google.com/file/d/1rnS9imooplITyoSv3KKY-czPnZXnivP1/view?usp=sharing">model</a></a></td>
       <td>??Mb</td>
     </tr>
   </tbody>
